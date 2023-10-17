@@ -7,7 +7,7 @@ function App() {
   // use a boolean to move through stages of a multi-stage form
   const [formStage, setFormStage] = React.useState(0);
   //
-  const [names, setNames] = React.useState(['Zach', 'An'])
+  const [names, setNames] = React.useState(['FundastA Engineers', 'Zach', 'An'])
 
   let content;
   if (formStage === 0) {
