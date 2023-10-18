@@ -3,11 +3,14 @@ import './App.css';
 
 function App() {
   const [number, setNumber] = React.useState(0);
-  const [textValue, setTextValue] = React.useState('');
+  
   // use a boolean to move through stages of a multi-stage form
   const [formStage, setFormStage] = React.useState(0);
   //
   const [names, setNames] = React.useState(['FundastA Engineers', 'Zach', 'An'])
+  
+  // State to store the input named
+  const [inputName, setInputName] = React.useState('');
 
   let content;
   if (formStage === 0) {
@@ -17,12 +20,16 @@ function App() {
       
         
 
-        <input onChange={e => setTextValue(e.target.value)} type="text"></input>
+      <input
+          onChange={e => setInputName(e.target.value)} // Update inputName state
+          type="text"
+          value={inputName} // Bind the input to the state
+        />
         
         
         <button onClick={() => setFormStage(formStage + 1) }>Next</button>
-        {textValue.length > 10 && <div className="error-message">Input too long</div>}
-        <p>{textValue}</p>
+        {inputName.length > 10 && <div className="error-message">Input too long</div>}
+        <p>{inputName}</p>
         </>
     )
   }
@@ -52,13 +59,12 @@ function App() {
       <h1>Let's use state: Step 3</h1>
       
       <button onClick={() => setFormStage(formStage - 1) }>Previous</button>
-      <button onClick={() => setNames([...names, "Yamaguchi"])}>Add name</button>
-       
+      <button onClick={() => setNames([...names, inputName])}>Add name</button> 
        
         {
-        names.map(name => <div>{name}</div>)
+        names.map(name => <div key={name}>{name}</div>)
       }
-        </>
+      </>
     )
   }
 
