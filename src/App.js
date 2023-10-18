@@ -8,7 +8,7 @@ function App() {
   const [formStage, setFormStage] = React.useState(0);
   //
   const [names, setNames] = React.useState(['FundastA Engineers', 'Zach', 'An'])
-  
+
   // State to store the input named
   const [inputName, setInputName] = React.useState('');
 
@@ -59,7 +59,10 @@ function App() {
       <h1>Let's use state: Step 3</h1>
       
       <button onClick={() => setFormStage(formStage - 1) }>Previous</button>
+      <button onClick={() => setNames(names.slice(0, -1))}>Remove Name</button>
       <button onClick={() => setNames([...names, inputName])}>Add name</button> 
+      
+      
        
         {
         names.map(name => <div key={name}>{name}</div>)
