@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import './App.css';
+import Nav from "./Nav";
+
+export const Context = React.createContext();
+
 
 function App() {
   const [number, setNumber] = React.useState(0);
+  const [signedIn, setSignedIn] = useState(false);
   
   // use a boolean to move through stages of a multi-stage form
   const [formStage, setFormStage] = React.useState(0);
   //
-  const [names, setNames] = React.useState(['FundastA Engineers', 'Zach', 'An'])
+  const [names, setNames] = React.useState(['Zach', 'An'])
 
   // State to store the input named
   const [inputName, setInputName] = React.useState('');
@@ -62,7 +67,7 @@ function App() {
       <button onClick={() => setNames(names.slice(0, -1))}>Remove Name</button>
       <button onClick={() => setNames([...names, inputName])}>Add name</button> 
       
-      
+      <h4>FundastA Engineers</h4>
        
         {
         names.map(name => <div key={name}>{name}</div>)
@@ -72,10 +77,16 @@ function App() {
   }
 
   return (
+   
+<Context.Provider value={[signedIn, setSignedIn]}>
     <div className="App">
       
-        {content}
-    </div>
+    <Nav />
+    <h2>{signedIn ? 'Signed In!' : 'Signed Out!'}</h2>
+    {content}
+    
+  </div>
+  </Context.Provider>
   );
 }
 
